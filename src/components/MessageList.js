@@ -4,14 +4,8 @@ class MessageList extends Component {
   constructor(props){
     super(props);
     this.state= {
-      messages: [
-        {
-          username: '',
-          content: '',
-          sentAt: '',
-          roomId: ''
-        }
-      ]
+      messages: [],
+      newContent: ''
     }
     this.messagesRef = this.props.firebase.database().ref('messages');
   }
@@ -23,6 +17,27 @@ class MessageList extends Component {
     });
   }
 
+  handleChange(e){
+    this.setState({
+      newContent: e.target.value
+    });
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    if (!this.state.newContent){
+      return;
+    }else {
+      this.messagesRef.push({
+        content: this.state.newContent,
+        username: this.props.user.displayName,
+        roomId: this.props.activeRoom,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+      })
+      this.setState({ newContent: '' });
+    }
+
+  }
 
   render(){
     const roomMessages = (this.state.messages
@@ -38,11 +53,28 @@ class MessageList extends Component {
       }
     ));
     return(
-      this.props.activeRoom ?
-        <div className="message-list">
-          {roomMessages}
-        </div> : <h1>Select a Room to view messages</h1>
+      <div className="message-view">
+        {this.props.activeRoom ?
+        <div>
+          <div className="message-list">
+            {roomMessages}
+          </div>
+          <div className="send-box">
+            <form onSubmit={(e)=> this.handleSubmit(e)}>
+              <input type="text"
+                className="send-text"
+                value={this.state.newContent}
+                onChange={(e)=> this.handleChange(e)}
+                placeholder="Type message here..."
+              />
+              <input type="submit" value="Send" className="send-button"/>
+            </form>
+          </div>
+        </div>
 
+        : <div className="select-room"></div>}
+
+      </div>
     );
   }
 }

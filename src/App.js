@@ -36,18 +36,21 @@ class App extends Component {
     this.setState({ user: user });
   }
 
+  home(){
+    this.setState({ activeRoom: '', activeRoomName: '' });
+  }
 
   render() {
     return (
       <div className="App">
         <div className="col-left">
-          <h1>Bloc Chat</h1>
+          <h1 className="bloc-chat" onClick={()=> this.home()}>Bloc Chat</h1>
           <RoomList firebase={firebase} currentRoom={this.currentRoom.bind(this)} />
           <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user}/>
         </div>
         <div className="col-right">
-          <h1>{this.state.activeRoomName}</h1>
-          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+          <div className="room-heading"><h1>{this.state.activeRoomName ? this.state.activeRoomName : "Select a Room"}</h1></div>
+          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>
         </div>
       </div>
     );

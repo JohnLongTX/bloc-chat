@@ -1,6 +1,6 @@
 .col-left{
   float: left;
-  width: 20%;
+  max-width: 200px;
   background: #333;
   color: #ffffff;
   height: 100vh;
@@ -19,13 +19,12 @@
   color: #4286f4;
 }
 .col-right{
-  float: right;
-  width: 75%;
+  margin-left: 200px;
 }
 
 .message-box{
-  width: 90%;
-  margin-top: 20px;
+  width: 70%;
+  margin: 20px;
   padding: 10px;
   border-radius: 10px;
   background: #4286f4;
@@ -40,7 +39,86 @@
   font-weight: bold;
 }
 .content{
-  padding-left: 1.25em;
   padding-top: .5em;
   font-size: 1.25em;
+}
+
+.room-heading{
+  background: #333;
+  color: #ffffff;
+}
+.send-text{
+  width: 90%;
+  font-size: 30px;
+  margin-left: 10px;
+  padding-bottom: 12px;
+}
+.send-button{
+  background: #333;
+  color: #ffffff;
+  margin: auto;
+  height: 48.5px;
+
+}
+.message-list{
+  height: 80vh;
+  overflow: scroll;
+  background: #ffffff;
+}
+.send-box{
+  margin-top: 10px;
+}
+body{
+  background: #333;
+}
+.select-room{
+  background: #ffffff;
+  height: 100vh;
+}
+.bloc-chat:hover{
+  color: #4286f4;
+}
+.sign-on-button{
+  width: 60px;
+  text-align: center;
+  display: inline;
+  padding: 5px;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.sign-out-button{
+  width: 60px;
+  text-align: center;
+  display: inline;
+  padding: 5px;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.signOnOut{
+  margin: auto;
+  text-align: center;
+}
+.sign-out-button:hover{
+  color: #4286f4;
+}
+.sign-on-button:hover{
+  color: #4286f4;
+}
+@media screen and (max-width: 600px) {
+  .col-left{
+    float: none;
+    height: auto;
+    background: #ffffff;
+    color: black;
+  }
+  body{
+    background: #ffffff;
+  }
+  .col-right{
+    margin: auto;
+  }
+  .room-heading{
+    background: #ffffff;
+    color: black;
+  }
 }
