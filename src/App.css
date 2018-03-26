@@ -14,6 +14,7 @@
   list-style: none;
   font-size: 1.5em;
   font-weight: bold;
+  cursor: pointer;
 }
 .col-left li:hover{
   color: #4286f4;
@@ -46,19 +47,29 @@
 .room-heading{
   background: #333;
   color: #ffffff;
+  padding: 10px;
+}
+.room-heading h1{
+  padding: 10px;
+  margin: 0;
+  display: inline;
 }
 .send-text{
   width: 90%;
   font-size: 30px;
-  margin-left: 10px;
   padding-bottom: 12px;
 }
 .send-button{
-  background: #333;
-  color: #ffffff;
-  margin: auto;
-  height: 48.5px;
-
+  background-color: #4286f4;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.send-button:hover, .send-button:focus{
+  background-color: #2980B9;
 }
 .message-list{
   height: 80vh;
@@ -75,28 +86,37 @@ body{
   background: #ffffff;
   height: 100vh;
 }
+.bloc-chat{
+  font-size: 2.5em;
+}
 .bloc-chat:hover{
   color: #4286f4;
+  cursor: pointer;
 }
 .sign-on-button{
   width: 60px;
   text-align: center;
   display: inline;
   padding: 5px;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: bold;
+  cursor: pointer;
 }
 .sign-out-button{
   width: 60px;
   text-align: center;
   display: inline;
   padding: 5px;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: bold;
+  cursor: pointer;
 }
 .signOnOut{
-  margin: auto;
-  text-align: center;
+  float: right;
+}
+.signOnOut p{
+  display: inline;
+  padding-right: 1.5em;
 }
 .sign-out-button:hover{
   color: #4286f4;
@@ -104,6 +124,39 @@ body{
 .sign-on-button:hover{
   color: #4286f4;
 }
+.drop-button {
+    background: #333;
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+    display: inline;
+}
+.drop-button:hover, .drop-button:focus {
+    color: #2980B9;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.show {
+  display: block;
+}
+.dropdown-content div:hover {background-color: #ddd}
 @media screen and (max-width: 600px) {
   .col-left{
     float: none;

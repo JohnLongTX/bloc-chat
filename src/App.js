@@ -40,16 +40,42 @@ class App extends Component {
     this.setState({ activeRoom: '', activeRoomName: '' });
   }
 
+  dropDown(e){
+    document.getElementById("edit-dropdown").classList.toggle("show");
+  }
+  closeDropDown(){
+    document.getElementById("edit-dropdown").classList.toggle("show");
+  }
+  deleteRoom(){
+    let roomName = this.state.activeRoom;
+    firebase.database().ref('rooms/' + roomName).remove();
+    this.closeDropDown();
+    window.location.reload();
+  }
+
   render() {
     return (
       <div className="App">
         <div className="col-left">
           <h1 className="bloc-chat" onClick={()=> this.home()}>Bloc Chat</h1>
           <RoomList firebase={firebase} currentRoom={this.currentRoom.bind(this)} />
-          <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user}/>
+
         </div>
         <div className="col-right">
-          <div className="room-heading"><h1>{this.state.activeRoomName ? this.state.activeRoomName : "Select a Room"}</h1></div>
+          <div className="room-heading" >
+            <h1>{this.state.activeRoomName ? this.state.activeRoomName : "Select a Room"}</h1>
+            {
+              this.state.activeRoomName ?
+              <div className="dropdown" >
+                <button className="drop-button ion-android-more-vertical" onClick={() => this.dropDown()}></button>
+                <div id="edit-dropdown" className="dropdown-content" >
+                  <div onClick={()=> this.deleteRoom()}>Delete</div>
+                </div>
+              </div> :
+              null
+            }
+            <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user}/>
+          </div>
           <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>
         </div>
       </div>
