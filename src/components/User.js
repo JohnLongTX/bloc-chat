@@ -23,11 +23,13 @@ class User extends Component {
     return(
       <div className="signOnOut">
         <p>Logged in as: {this.props.user ? this.props.user.displayName : 'Guest'}</p>
-        <div className="sign-on-button" onClick={()=> this.handleSignOn()}>Sign In</div>
-        <div className="sign-out-button" onClick={()=> this.handleSignOut()}>Sign Out</div>
-      </div>
+        {this.props.user ?
+          <div className="sign-out-button" onClick={()=> this.handleSignOut()}>Sign Out</div> :
+          <div className="sign-on-button" onClick={()=> this.handleSignOn()}>Sign In</div>}
 
-    )
+          </div>
+
+        )
   }
 }
 
